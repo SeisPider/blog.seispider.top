@@ -12,6 +12,7 @@ For scientific purpose, we sometime needs to shift phase of time series with spe
 To acheive this, transforming the time series to freqeuency domain with 
      $$F(\omega) = \int_{-\omega}^{\omega} f(t) e^{-i \omega t} dt$$
 
-where $F(\omega)$ as Fourier spectrum of signal f(t). Thus, the phase shift equals 
+where $F(\omega)$ as Fourier spectrum of signal $f(t)$. Thus, the phase shift equals 
 $$F_{sh}(\omega) = F(\omega) * e^{-i \alpha}$$ 
 <!--more-->
+
