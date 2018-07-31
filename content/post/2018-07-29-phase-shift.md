@@ -10,8 +10,8 @@ author: "Xiao Xiao"
 
 ## Mathmatical expression
 
-For scientific purpose, we sometime needs to shift phase of time series with specfic angles.
-To acheive this, transforming the time series to freqeuency domain with 
+For scientific purpose, we sometime need to shift phase of time series with specfic angles.
+To acheive this, we can transform the time series into freqeuency domain with 
      $$F(\omega) = \int_{-\omega}^{\omega} f(t) e^{-i \omega t} dt$$
 
 where $F(\omega)$ as Fourier spectrum of signal $f(t)$. Thus, the phase shifted Fourier 
