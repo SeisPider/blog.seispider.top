@@ -10,7 +10,7 @@ comment: false
 mathjax: false
 ---
 
-SeisPider is a young seismologist and an open-source contributor from China.
+SeisPider is a young seismologist and an open-source software contributor from China.
 However, for international service, this blog will be maintainded with English.
 
 Know more about me @ [Xiao Xiao](http://seispider.top/)
