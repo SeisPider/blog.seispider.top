@@ -31,7 +31,7 @@ hypocenter location of eearthquakes according to body wave.
 
 **[CRUST 1.0](https://igppweb.ucsd.edu/~gabi/crust1.html)**
 
-**[Slab 1.0](https://earthquake.usgs.gov/data/slab/models.php)**
+**[Slab 2.0](https://www.sciencebase.gov/catalog/item/5aa1b00ee4b0b1c392e86467)**
 
 ## Gravitational models 
 
