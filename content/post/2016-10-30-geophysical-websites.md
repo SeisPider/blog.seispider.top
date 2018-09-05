@@ -33,6 +33,9 @@ hypocenter location of eearthquakes according to body wave.
 
 **[Slab 2.0](https://www.sciencebase.gov/catalog/item/5aa1b00ee4b0b1c392e86467)**
 
+**[SRCMOD](http://equake-rc.info/SRCMOD/)**
+an online database of finite-fault rupture models of past earthquakes!
+
 ## Gravitational models 
 
 **[EGM2008](http://earth-info.nga.mil/GandG/wgs84/gravitymod/egm2008/egm08_wgs84.html)**
