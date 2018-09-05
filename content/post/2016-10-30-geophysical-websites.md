@@ -23,6 +23,8 @@ hypocenter location of eearthquakes according to body wave.
 
 - IRIS: **[Incorporated Research Institutions for Seismology](https://service.iris.edu/)** 
 
+- AF: **[Africa Array](http://africaarray.psu.edu/stations_data/data.asp)** 
+
 - Hinet: **[High Sensitivity Seismograph Network Japan](http://www.hinet.bosai.go.jp/?LANG=en)**
 
 # Earth reference models 
