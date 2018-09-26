@@ -96,6 +96,106 @@ This post summaries notes from official guidence of IELTS.
 - matching sentence endings
 - matching information
 
+## Discursive passages
+- reading discursive passages
+- identifying theories and opinions
+- matching features
+
+## Multiple-choice questions
+- understanding longer pieces of text
+- different types of multiple-choice questions
+- answering multiple-choice questions
+- identifying a writer's purpose
+
+## Opinions and attitudes
+- dealing with argumentative texts
+- identifying a writer's views/claims
+- identifying grammatical features
+- Yes/No/Not Given questions
+- summary completion with box
+- summary completion without a box
+
+## General training reading
+- understanding the different sections of the test
+- scanning a passage for specific details
+- recognising paraphrase
+- dealing with multiple passages
+- understanding wotk-related passages
+- matching questions to parts of a text
+
+# Writing
+
+## Descruibing a chart,table or graph
+- understanding Academic Writing Task 1
+- understanding charts, tables and graphs
+- identifying relevant information
+- improving your Task Achievement score
+
+## Comparing and contrasting graphs and tables
+- avoiding repetition
+- comparing and contrasting data
+- describing changes in numbers
+- grammatical range and accuracy
+- describing numbers and figures accurately
+
+## Describing diagrams
+- understanding a diagram
+- describing a process-coherence and cohesion
+
+## Describing maps
+- describing a map
+- describing changes in a place
+- being accurate
+
+## Getting ready to write
+- understanding the task
+- improving your Task Response Score
+- planning and organising your ideas
+- writing and introduction
+
+## Expressing your ideas clearly
+- linking your ideas
+- using the correct style
+- being accurate with vocabulary
+- avoiding repetition
+- using the correct style
+- expressing a personal view
+- reaching a conclusion
+
+## Checking and correcting
+- developing your ideas clearly
+- grammatical accuracy
+- assessing your language level
+- checking and correcting
+- using correct punctuation
+
+# Speaking
+
+## Part 1
+- getting ready to speak
+- talking about familiar topics
+- using the correct tense
+- Grammatical Range and Accuracy
+
+## Part 2 - Giving a talk
+- understanding the task
+- improving your Fluency abd Coherence
+- keeping going
+- organising your notes and your talk
+
+## Part 3 - Taking about abstract topics
+- talking about abstract topics
+- giving your personal opinion
+- agreeing and disagreeing
+- improving your Lexical Resource score
+
+## Checking, correcting and assessing
+- dealing with problems
+- pronounciation and intonation
+- running words together (chunking)
+- assessing your level
+
+
 
 
 
