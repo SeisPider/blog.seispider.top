@@ -18,7 +18,7 @@ general scientific numerial computation and visualization.
 <!--more-->
 ## Visualization
 
-| Library     |  Dimension  |   Figure field  | Note |
+| Library     |  Dimension  |  Field  | Note |
 | ----------- | ----------- |-----------------| ------|
 |[Matplotlib](https://matplotlib.org/) |  2D  | General |-|
 |[seaborn](http://seaborn.pydata.org/#)|  2D  | Statistics |-|
@@ -26,6 +26,19 @@ general scientific numerial computation and visualization.
 |[HoloViews](http://holoviews.org/gallery/index.html)| 2D| General|Extension to Matplotlib ...|
 |[Bokeh](http://bokeh.pydata.org/en/latest/docs/gallery.html#gallery)| 2D| General|For web interative visualization|
 |[gmt-python](https://github.com/GenericMappingTools/gmt-python)|2D|Gerneral| Efficient for plotting maps|
+
+
+## Numerical computation
+
+| Library     |  Note |
+| ----------- | ------|
+|[Scipy](http://www.scipy.org/ SciPy )|Includes modules for linear algebra, optimization, integration, special functions, signal and image processing, statistics, genetic algorithms, ODE solvers, and others|
+|[sympy](http://www.sympy.org/)|Symbolic mathematics.|
+|[ad](https://pypi.org/project/ad/)|easily and transparently perform first and second-order automatic differentiation. |
+
+
+## References
+- [Numerical and scientific python](https://wiki.python.org/moin/NumericAndScientific)
 
 ## Change log
 - 2019-01-07: Initial version
