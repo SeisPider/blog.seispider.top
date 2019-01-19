@@ -26,6 +26,7 @@ general scientific numerial computation and visualization.
 |[HoloViews](http://holoviews.org/gallery/index.html)| 2D| General|Extension to Matplotlib ...|
 |[Bokeh](http://bokeh.pydata.org/en/latest/docs/gallery.html#gallery)| 2D| General|For web interative visualization|
 |[gmt-python](https://github.com/GenericMappingTools/gmt-python)|2D|Gerneral| Efficient for plotting maps|
+|[GMSimViz](https://github.com/ucgmsim/GMSimViz)|3D|automation tool that produces an animated 3D visualization of geological faults, ground motion and other earthquake related data.| Depend on GMT|
 
 
 ## Numerical computation
@@ -35,7 +36,8 @@ general scientific numerial computation and visualization.
 |[Scipy](http://www.scipy.org/ SciPy )|Includes modules for linear algebra, optimization, integration, special functions, signal and image processing, statistics, genetic algorithms, ODE solvers, and others|
 |[sympy](http://www.sympy.org/)|Symbolic mathematics.|
 |[ad](https://pypi.org/project/ad/)|easily and transparently perform first and second-order automatic differentiation. |
-
+|[Pandas](https://github.com/pandas-dev/pandas)|flexible and powerful data analysis / manipulation library for Python, providing labeled data structures similar to R data.|
+|[PyKrige](https://pypi.org/project/PyKrige/)|2D/3D kriging interpolation tool|
 
 ## References
 - [Numerical and scientific python](https://wiki.python.org/moin/NumericAndScientific)
