@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on SeisPider - A blog for recording</title>
+    <link>https://blog.seispider.top/tags/python/</link>
+    <description>Recent content in Python on SeisPider - A blog for recording</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Xiao Xiao</copyright>
+    <lastBuildDate>Mon, 07 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.seispider.top/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python scientific tools in geoscience</title>
+      <link>https://blog.seispider.top/post/2019-01-07-python-scientific-tools/</link>
+      <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.seispider.top/post/2019-01-07-python-scientific-tools/</guid>
+      <description>&lt;p&gt;As we all know, all data science projects include three parts: retrieving data, numerical
+computation and result visualization. Take seismology as an example, ways for requesting
+seismic data from providers (IRIS, ISC and NIED etc.) are concluded &lt;a href=&#34;https://blog.seispider.top/post/2016-10-30-geophysical-websites/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Thus, this post focuses on collecting serveral useful python library for
+general scientific numerial computation and visualization.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Danger in performing phase shift with Python for a time series</title>
+      <link>https://blog.seispider.top/post/2018-07-29-phase-shift/</link>
+      <pubDate>Sun, 29 Jul 2018 21:44:43 +0800</pubDate>
+      
+      <guid>https://blog.seispider.top/post/2018-07-29-phase-shift/</guid>
+      <description>&lt;h2 id=&#34;mathmatical-expression&#34;&gt;Mathmatical expression&lt;/h2&gt;
+
+&lt;p&gt;For scientific purpose, we sometime need to shift phase of time series with specfic angles.
+To acheive this, we can transform the time series into freqeuency domain with
+     $$F(\omega) = \int_{-\omega}^{\omega} f(t) e^{-i \omega t} dt$$&lt;/p&gt;
+
+&lt;p&gt;where $F(\omega)$ as Fourier spectrum of signal $f(t)$. Thus, the phase shifted Fourier
+spectrum $F_{sh}$ is&lt;/p&gt;
+
+&lt;p&gt;$$F_{sh}(\omega) = F(\omega) * e^{-i \alpha}$$
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

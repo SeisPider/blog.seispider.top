@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on SeisPider - A blog for recording</title>
+    <link>https://blog.seispider.top/categories/</link>
+    <description>Recent content in Categories on SeisPider - A blog for recording</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Xiao Xiao</copyright>
+    
+	<atom:link href="https://blog.seispider.top/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Geophysical Sources</title>
+      <link>https://blog.seispider.top/categories/geophysical-sources/</link>
+      <pubDate>Sun, 30 Oct 2016 21:44:43 +0800</pubDate>
+      
+      <guid>https://blog.seispider.top/categories/geophysical-sources/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>https://blog.seispider.top/categories/python/</link>
+      <pubDate>Mon, 07 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.seispider.top/categories/python/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

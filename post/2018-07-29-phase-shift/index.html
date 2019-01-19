@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Danger in performing phase shift with Python for a time series - SeisPider - A blog for recording</title>
+  <link rel="alternate" hreflang="en" href="https://blog.seispider.top/" />
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="Xiao Xiao" />
+  <meta name="description" content="Mathmatical expression For scientific purpose, we sometime need to shift phase of time series with specfic angles. To acheive this, we can transform the time series into freqeuency domain with $$F(\omega) = \int_{-\omega}^{\omega} f(t) e^{-i \omega t} dt$$
+where $F(\omega)$ as Fourier spectrum of signal $f(t)$. Thus, the phase shifted Fourier spectrum $F_{sh}$ is
+$$F_{sh}(\omega) = F(\omega) * e^{-i \alpha}$$ " />
+
+  <meta name="keywords" content="Seismologist, Coder" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.41" />
+
+
+<link rel="canonical" href="https://blog.seispider.top/post/2018-07-29-phase-shift/" />
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+<link href="/dist/jane.min.css?v=2.7.0" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="Danger in performing phase shift with Python for a time series" />
+<meta property="og:description" content="Mathmatical expression
+
+For scientific purpose, we sometime need to shift phase of time series with specfic angles.
+To acheive this, we can transform the time series into freqeuency domain with
+     $$F(\omega) = \int_{-\omega}^{\omega} f(t) e^{-i \omega t} dt$$
+
+where $F(\omega)$ as Fourier spectrum of signal $f(t)$. Thus, the phase shifted Fourier
+spectrum $F_{sh}$ is
+
+$$F_{sh}(\omega) = F(\omega) * e^{-i \alpha}$$
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.seispider.top/post/2018-07-29-phase-shift/" />
+
+
+
+<meta property="article:published_time" content="2018-07-29T21:44:43&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-07-29T21:44:43&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Danger in performing phase shift with Python for a time series">
+<meta itemprop="description" content="Mathmatical expression
+
+For scientific purpose, we sometime need to shift phase of time series with specfic angles.
+To acheive this, we can transform the time series into freqeuency domain with
+     $$F(\omega) = \int_{-\omega}^{\omega} f(t) e^{-i \omega t} dt$$
+
+where $F(\omega)$ as Fourier spectrum of signal $f(t)$. Thus, the phase shifted Fourier
+spectrum $F_{sh}$ is
+
+$$F_{sh}(\omega) = F(\omega) * e^{-i \alpha}$$
+">
+
+
+<meta itemprop="datePublished" content="2018-07-29T21:44:43&#43;08:00" />
+<meta itemprop="dateModified" content="2018-07-29T21:44:43&#43;08:00" />
+<meta itemprop="wordCount" content="481">
+
+
+
+<meta itemprop="keywords" content="Signal,Python," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Danger in performing phase shift with Python for a time series"/>
+<meta name="twitter:description" content="Mathmatical expression
+
+For scientific purpose, we sometime need to shift phase of time series with specfic angles.
+To acheive this, we can transform the time series into freqeuency domain with
+     $$F(\omega) = \int_{-\omega}^{\omega} f(t) e^{-i \omega t} dt$$
+
+where $F(\omega)$ as Fourier spectrum of signal $f(t)$. Thus, the phase shifted Fourier
+spectrum $F_{sh}$ is
+
+$$F_{sh}(\omega) = F(\omega) * e^{-i \alpha}$$
+"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">SeisPider</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://blog.seispider.top/">Home</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://blog.seispider.top/post/">Archives</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://blog.seispider.top/tags/">Tags</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://blog.seispider.top/categories/">Categories</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://blog.seispider.top/about/">About</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://seispider.top" rel="noopener" target="_blank">
+              Sites
+              <i class="iconfont icon-new-window"></i>
+            </a>
+          
+        
+      </li>
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      SeisPider
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://blog.seispider.top/">Home</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://blog.seispider.top/post/">Archives</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://blog.seispider.top/tags/">Tags</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://blog.seispider.top/categories/">Categories</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://blog.seispider.top/about/">About</a>
+          
+
+        
+
+      </li>
+    
+      <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://seispider.top" rel="noopener" target="_blank">
+              Sites
+            <i class="iconfont icon-new-window"></i>
+            </a>
+          
+
+        
+
+      </li>
+    
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">Danger in performing phase shift with Python for a time series</h1>
+      
+      <div class="post-meta">
+        <span class="post-time"> 2018-07-29 </span>
+        <div class="post-category">
+            <a href="https://blog.seispider.top/categories/python/"> Python </a>
+            
+          </div>
+        <span class="more-meta"> 481 words </span>
+        <span class="more-meta"> 3 min read </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Table of Contents</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#mathmatical-expression">Mathmatical expression</a></li>
+<li><a href="#numerical-experiment">Numerical experiment</a></li>
+<li><a href="#change-log">Change log.</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h2 id="mathmatical-expression">Mathmatical expression</h2>
+
+<p>For scientific purpose, we sometime need to shift phase of time series with specfic angles.
+To acheive this, we can transform the time series into freqeuency domain with
+     $$F(\omega) = \int_{-\omega}^{\omega} f(t) e^{-i \omega t} dt$$</p>
+
+<p>where $F(\omega)$ as Fourier spectrum of signal $f(t)$. Thus, the phase shifted Fourier
+spectrum $F_{sh}$ is</p>
+
+<p>$$F_{sh}(\omega) = F(\omega) * e^{-i \alpha}$$
+</p>
+
+<p>in thich $\alpha$ indicates shifted angle.</p>
+
+<h2 id="numerical-experiment">Numerical experiment</h2>
+
+<p>Previous approach could be applied with below Python code</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#-------------------------------------------------------------------------------</span>
+<span class="c1">#      Purpose: Shown edge error in performing phase shift</span>
+<span class="c1">#       Status: Developing</span>
+<span class="c1">#   Dependence: Python 3.6</span>
+<span class="c1">#      Version: ALPHA</span>
+<span class="c1"># Created Date: 22:11h, 29/07/2018</span>
+<span class="c1">#        Usage: python test.py</span>
+<span class="c1">#       Author: Xiao Xiao, https://github.com/SeisPider</span>
+<span class="c1">#        Email: xiaox.seis@gmail.com</span>
+<span class="c1">#     Copyright (C) 2017-2018 Xiao Xiao</span>
+<span class="c1">#-------------------------------------------------------------------------------</span>
+<span class="kn">from</span> <span class="nn">numpy.fft</span> <span class="kn">import</span> <span class="n">rfft</span><span class="p">,</span> <span class="n">irfft</span><span class="p">,</span> <span class="n">rfftfreq</span>
+<span class="kn">from</span> <span class="nn">scipy.signal</span> <span class="kn">import</span> <span class="n">hilbert</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">font</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;size&#39;</span>   <span class="p">:</span>  <span class="mi">18</span><span class="p">}</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">font</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">phase_shift</span><span class="p">(</span><span class="n">iptsignal</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;Perform phase shift of arbitary angle
+</span><span class="s2">
+</span><span class="s2">    Parameter
+</span><span class="s2">    =========
+</span><span class="s2">    iptsignal : numpy.array
+</span><span class="s2">        input signal
+</span><span class="s2">    angle : float
+</span><span class="s2">        angle to shift signal, in degree
+</span><span class="s2">    dt : float
+</span><span class="s2">        time step
+</span><span class="s2">    
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="c1"># Resolve the signal&#39;s fourier spectrum</span>
+    <span class="n">spec</span> <span class="o">=</span> <span class="n">rfft</span><span class="p">(</span><span class="n">iptsignal</span><span class="p">)</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="n">rfftfreq</span><span class="p">(</span><span class="n">iptsignal</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
+
+    <span class="c1"># Perform phase shift in freqeuency domain</span>
+    <span class="n">spec</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mf">1.0j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">angle</span><span class="p">))</span>
+
+    <span class="c1"># Inverse FFT back to time domain</span>
+    <span class="n">phaseshift</span> <span class="o">=</span> <span class="n">irfft</span><span class="p">(</span><span class="n">spec</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">iptsignal</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">phaseshift</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># Define Time range</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+    <span class="n">signal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">time</span> <span class="o">/</span>  <span class="mf">100.0</span><span class="p">)</span>
+    <span class="n">sinsignal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">time</span> <span class="o">/</span>  <span class="mf">100.0</span><span class="p">)</span>
+    
+    <span class="c1"># Shift angle and time step</span>
+    <span class="n">angle</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="n">phsignal</span> <span class="o">=</span> <span class="n">phase_shift</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+
+    <span class="c1"># Comparasion between Personal shifted and theoretical result</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">))</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&#34;Cosine (raw)&#34;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">sinsignal</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&#34;Sine&#34;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">phsignal</span><span class="p">,</span> <span class="s2">&#34;--&#34;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&#34;Shift&#34;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&#34;Time&#34;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&#34;Amplitude&#34;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&#34;Comparison between Sinudoidal function and shifted signal&#34;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+    <span class="c1"># Comparasion between Personal shifted and Hilbert transform result</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&#34;Cosine (raw)&#34;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">phsignal</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&#34;Shift&#34;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">hilbert</span><span class="p">(</span><span class="n">signal</span><span class="p">)),</span> <span class="s2">&#34;--&#34;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&#34;Hilbert&#34;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&#34;Time&#34;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&#34;Amplitude&#34;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&#34;Comparison between shifted signal and Hilbert transform format&#34;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>With an output like below,</p>
+
+<p><img src="/images/2018-07-29-Fig1.png" alt="Output of previous code" /></p>
+
+<p>Using a cosine-dominated signal for benchmark, the theoretical phase shifted signal shold be a sine signal with same frequency. However, the phase shifted signal shows great differences in edge part refering to the theoretical one and is the same as the signal computed from numerical hilbert tranformation result.</p>
+
+<div class="shortcode-notice warning">
+  <div class="shortcode-notice-title warning">
+    
+      warning
+    
+  </div>
+  <p><strong>So, it&rsquo;s dangerous to numerically shift phases and completely wrong in edge part, around 2~3 times of the maximum peroid.</strong></p>
+
+</div>
+
+
+<h2 id="change-log">Change log.</h2>
+
+<ul>
+<li>2018-07-29: Initial version</li>
+</ul>
+    </div>
+
+    
+    
+<div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Xiao Xiao</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">2018-07-29</span>
+  </p>
+  
+  <p class="copyright-item">
+    <span class="item-title">License</span>
+    <span class="item-content"><a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a></span>
+  </p>
+</div>
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://blog.seispider.top/tags/signal/">Signal</a>
+          <a href="https://blog.seispider.top/tags/python/">Python</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/2019-01-07-python-scientific-tools/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Python scientific tools in geoscience</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        
+          <a class="next" href="/post/2016-10-30-geophysical-websites/">
+            <span class="next-text nav-default">Website for downloading data</span>
+            <span class="prev-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+
+  <div class="disqus-comment">
+  <div class="disqus-button" id="load_disqus" onclick="load_disqus()">
+    Show Disqus Comments
+  </div>
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    function load_disqus() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'xiaox-seis-1';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+      $('#load_disqus').remove();
+    };
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+  
+  </div>
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:xiaox.seis@gmail.com" rel="me noopener" class="iconfont icon-email"
+        title="email" target="_blank">
+      </a>
+      <a href="https://stackoverflow.com/users/story/8370377#" rel="me noopener" class="iconfont icon-stack-overflow"
+        title="stack-overflow" target="_blank">
+      </a>
+      <a href="http://twitter.com/SeisPider" rel="me noopener" class="iconfont icon-twitter"
+        title="twitter" target="_blank">
+      </a>
+      <a href="http://github.com/SeisPider" rel="me noopener" class="iconfont icon-github"
+        title="github" target="_blank">
+      </a>
+      <a href="http://weibo.com/SeisPider" rel="me noopener" class="iconfont icon-weibo"
+        title="weibo" target="_blank">
+      </a>
+      <a href="https://www.zhihu.com/people/xiao-xiao-71-95-93/activities" rel="me noopener" class="iconfont icon-zhihu"
+        title="zhihu" target="_blank">
+      </a>
+  <a href="https://blog.seispider.top/index.xml" rel="noopener alternate" type="application/rss" class="iconfont icon-rss"
+    title="rss" target="_blank">
+  </a>
+  </div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2017 -
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span><span class="author">Xiao Xiao</span></span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+<script type="text/javascript" src="/dist/jane.min.js?v=2.7.0"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+</body>
+</html>

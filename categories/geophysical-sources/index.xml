@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Geophysical Sources on SeisPider - A blog for recording</title>
+    <link>https://blog.seispider.top/categories/geophysical-sources/</link>
+    <description>Recent content in Geophysical Sources on SeisPider - A blog for recording</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>Xiao Xiao</copyright>
+    <lastBuildDate>Sun, 30 Oct 2016 21:44:43 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.seispider.top/categories/geophysical-sources/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Website for downloading data</title>
+      <link>https://blog.seispider.top/post/2016-10-30-geophysical-websites/</link>
+      <pubDate>Sun, 30 Oct 2016 21:44:43 +0800</pubDate>
+      
+      <guid>https://blog.seispider.top/post/2016-10-30-geophysical-websites/</guid>
+      <description>&lt;p&gt;Collection of all known data providers and comparison between them.&lt;/p&gt;
+
+&lt;p&gt;Including earthquake location, waveforms, mechanism and earth reference models.&lt;/p&gt;
+
+&lt;h2 id=&#34;earthquake-location&#34;&gt;Earthquake location&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;PDE: &lt;strong&gt;&lt;a href=&#34;https://earthquake.usgs.gov/data/pde.php&#34;&gt;Preliminary Determination of Epicenters&lt;/a&gt;&lt;/strong&gt;
+hypocenter location of eearthquakes according to body wave.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;CMTSearch: &lt;strong&gt;&lt;a href=&#34;http://www.globalcmt.org/CMTsearch.html&#34;&gt;Global CMT Catalog Reseach&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
